@@ -10,11 +10,11 @@
 //       .then((response) => response.json())
 //       .then((post) => resolve(post.title))
 
-//       .catch((error) => console.error(error));
+//       .catch(reject);
 //   });
 // }
 // getPostTitle(1)
-//   .then((post) => console.log(`Il post è:`, post))
+//   .then((post) => console.log(`Il titolo del post è:`, post))
 //   .catch((error) => console.error(error));
 
 // 🎯 Bonus: Ottieni l'intero post con l'autore
@@ -52,8 +52,8 @@
 //     setTimeout(() => {
 //       const incastrato = Math.random() < 0.2;
 //       if (incastrato) {
-//         console.log("Errore, daddo incastrato");
-//         reject;
+//          reject("Errore, daddo incastrato");
+//
 //       } else {
 //         const valore = Math.floor(Math.random() * 6) + 1;
 //         console.log(`Il valore è:`, valore);
@@ -101,12 +101,9 @@ function creaLanciaDado() {
 const lancioContinuo = creaLanciaDado();
 
 lancioContinuo()
-  .then((result) => {
-    console.log("Il risultato finale è:", result);
-    return lancioContinuo();
-  })
-  .then((result) => {
-    console.log("Il risultato finale è:", result);
-    return lancioContinuo();
-  })
+  .then((result) => console.log("Il risultato finale è:", result))
+  .catch((error) => console.log(error));
+
+lancioContinuo()
+  .then((result) => console.log("Il risultato finale è:", result))
   .catch((error) => console.log(error));
