@@ -71,6 +71,7 @@
 // Modifica la funzione in creaLanciaDado(), che restituisce una closure che memorizza l'ultimo risultato. Se il numero esce due volte di fila, stampa "Incredibile!".
 
 function creaLanciaDado() {
+  console.log(`Sto lanciando il dado...`);
   let valoreIniziale = null;
   return function () {
     return new Promise((resolve, reject) => {
@@ -101,9 +102,10 @@ function creaLanciaDado() {
 const lancioContinuo = creaLanciaDado();
 
 lancioContinuo()
-  .then((result) => console.log("Il risultato finale è:", result))
-  .catch((error) => console.log(error));
-
-lancioContinuo()
-  .then((result) => console.log("Il risultato finale è:", result))
+  .then((result) => {
+    console.log("Il risultato finale è:", result);
+    lancioContinuo()
+      .then((result) => console.log("Il risultato finale è:", result))
+      .catch((error) => console.log(error));
+  })
   .catch((error) => console.log(error));
